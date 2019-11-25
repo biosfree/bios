@@ -1,5 +1,7 @@
-Date: Пн ноя 25 21:26:39 MSK 2019
-Version: v0.1
+name:    ruRU support for cMangos-Vanilla
+author:  biosfree {https://github.com/biosfree}
+date:    Пн ноя 25 21:26:39 MSK 2019
+version: v0.1
 ---
  src/game/Chat/Chat.cpp   |    4 ++--
  src/game/Chat/Level1.cpp |    4 ++--
@@ -249,4 +251,3 @@ index 73d014c58..7dc118469 100644
 +#define MAX_LOCALE 9
  
  LocaleConstant GetLocaleByName(const std::string& name);
- 
