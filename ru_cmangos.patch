@@ -19,7 +19,7 @@ index 0a79ef1e8..cfefca396 100644
 @@ -1848,7 +1848,7 @@ bool ChatHandler::isValidChatMessage(const char* message) const
                                  return false;
                              }
- 
+
 -                            for (uint8 i = 0; i < MAX_LOCALE; ++i)
 +                            for (uint8 i = 0; i < MAX_DBC_LOCALE; ++i)
                              {
@@ -50,7 +50,7 @@ index be8ea1a35..ad1dbe992 100644
 @@ -1511,7 +1511,7 @@ bool ChatHandler::HandleLookupAreaCommand(char* args)
                  }
              }
- 
+
 -            if (loc < MAX_LOCALE)
 +            if (loc < MAX_DBC_LOCALE)
              {
@@ -72,7 +72,7 @@ index c5a6d89b4..b7d255cbc 100644
 @@ -1366,7 +1366,7 @@ bool ChatHandler::HandleLookupFactionCommand(char* args)
                  }
              }
- 
+
 -            if (loc < MAX_LOCALE)
 +            if (loc < MAX_DBC_LOCALE)
              {
@@ -90,7 +90,7 @@ index c5a6d89b4..b7d255cbc 100644
 @@ -4105,7 +4105,7 @@ bool ChatHandler::HandleLearnAllRecipesCommand(char* args)
              }
          }
- 
+
 -        if (loc < MAX_LOCALE)
 +        if (loc < MAX_DBC_LOCALE)
          {
@@ -112,7 +112,7 @@ index bf84b86da..cae384bda 100644
 @@ -2811,7 +2811,7 @@ bool ChatHandler::HandleLookupItemSetCommand(char* args)
                  }
              }
- 
+
 -            if (loc < MAX_LOCALE)
 +            if (loc < MAX_DBC_LOCALE)
              {
@@ -130,7 +130,7 @@ index bf84b86da..cae384bda 100644
 @@ -2874,7 +2874,7 @@ bool ChatHandler::HandleLookupSkillCommand(char* args)
                  }
              }
- 
+
 -            if (loc < MAX_LOCALE)
 +            if (loc < MAX_DBC_LOCALE)
              {
@@ -148,7 +148,7 @@ index bf84b86da..cae384bda 100644
 @@ -2999,7 +2999,7 @@ bool ChatHandler::HandleLookupSpellCommand(char* args)
                  }
              }
- 
+
 -            if (loc < MAX_LOCALE)
 +            if (loc < MAX_DBC_LOCALE)
              {
@@ -166,7 +166,7 @@ index bf84b86da..cae384bda 100644
 @@ -3238,7 +3238,7 @@ bool ChatHandler::HandleLookupTaxiNodeCommand(char* args)
                  }
              }
- 
+
 -            if (loc < MAX_LOCALE)
 +            if (loc < MAX_DBC_LOCALE)
              {
@@ -179,7 +179,7 @@ index a0830d972..e6beb33ca 100644
 @@ -1312,9 +1312,9 @@ void World::DetectDBCLang()
  {
      uint32 m_lang_confid = sConfig.GetIntDefault("DBC.Locale", 255);
- 
+
 -    if (m_lang_confid != 255 && m_lang_confid >= MAX_LOCALE)
 +    if (m_lang_confid != 255 && m_lang_confid >= MAX_DBC_LOCALE)
      {
@@ -187,11 +187,11 @@ index a0830d972..e6beb33ca 100644
 +        sLog.outError("Incorrect DBC.Locale! Must be >= 0 and < %d (set to 0)", MAX_DBC_LOCALE);
          m_lang_confid = LOCALE_enUS;
      }
- 
+
 @@ -1323,8 +1323,8 @@ void World::DetectDBCLang()
- 
+
      std::string availableLocalsStr;
- 
+
 -    uint32 default_locale = MAX_LOCALE;
 -    for (int i = MAX_LOCALE - 1; i >= 0; --i)
 +    uint32 default_locale = MAX_DBC_LOCALE;
@@ -202,14 +202,14 @@ index a0830d972..e6beb33ca 100644
 @@ -1335,13 +1335,13 @@ void World::DetectDBCLang()
          }
      }
- 
+
 -    if (default_locale != m_lang_confid && m_lang_confid < MAX_LOCALE &&
 +    if (default_locale != m_lang_confid && m_lang_confid < MAX_DBC_LOCALE &&
              (m_availableDbcLocaleMask & (1 << m_lang_confid)))
      {
          default_locale = m_lang_confid;
      }
- 
+
 -    if (default_locale >= MAX_LOCALE)
 +    if (default_locale >= MAX_DBC_LOCALE)
      {
@@ -225,7 +225,7 @@ index 17b925c52..97235f614 100644
      "esMX",
 +    "ruRU",
  };
- 
+
  // used for search by name or iterate all names
 @@ -42,6 +43,7 @@ LocaleNameStr const fullLocaleNameList[] =
      { "zhTW", LOCALE_zhTW },
@@ -234,7 +234,7 @@ index 17b925c52..97235f614 100644
 +    { "ruRU", LOCALE_ruRU },
      { NULL,   LOCALE_enUS }
  };
- 
+
 diff --git a/src/shared/Common.h b/src/shared/Common.h
 index 73d014c58..7dc118469 100644
 --- a/src/shared/Common.h
@@ -245,9 +245,9 @@ index 73d014c58..7dc118469 100644
      LOCALE_esMX = 7,
 +    LOCALE_ruRU = 8,
  };
- 
+
 -#define MAX_LOCALE 8
 +#define MAX_DBC_LOCALE 8
 +#define MAX_LOCALE 9
- 
+
  LocaleConstant GetLocaleByName(const std::string& name);
