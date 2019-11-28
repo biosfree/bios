@@ -10,5 +10,3 @@ CREATE TABLE `locales_areatrigger_teleport` (
    `Text_loc8` LONGTEXT COMMENT 'Text of the status_failed locale 8',
    PRIMARY KEY(`Entry`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT COMMENT='Areatrigger System';
-
-
