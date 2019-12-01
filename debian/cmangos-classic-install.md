@@ -24,15 +24,20 @@ If you are an absolute beginner to programming and compiling then you may want t
 #### 2.1 Install help tools and some libraries
 ```bash
 sudo apt update
+sudo apt install build-essential git autoconf cmake default-libmysqlclient-dev libtool libssl-dev zlibc libbz2-dev subversion libboost-all-dev
+```
+or full list without dependencies:
+```bash
 sudo apt install grep build-essential gcc g++ automake git-core autoconf make patch cmake default-libmysqlclient-dev libtool libssl-dev binutils zlibc libc6 libbz2-dev subversion libboost-all-dev
 ```
+
 #### 2.2 Install and Configure MariaDB <a name="install_mariadb"></a>
 1. Installing MariaDB
-- version 10.3 from standart debian buster repo
+	- version 10.3 from standart debian buster repo
 	```bash
 	sudo apt install mariadb-server
 	```
-- or version 10.4 stable from mariadb repo
+	- or version 10.4 stable from mariadb repo
 	```bash
 	sudo apt-get install software-properties-common dirmngr
 	sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8
@@ -40,6 +45,7 @@ sudo apt install grep build-essential gcc g++ automake git-core autoconf make pa
 	```
 	```bash
 	sudo apt update
+	sudo apt upgrade
 	sudo apt install mariadb-server
 	```
 	:grey_exclamation: Check all available versions and mirrors on the official MariaDB Foundation [page](https://downloads.mariadb.org/mariadb/repositories/#distro=Debian&distro_release=buster--buster)
@@ -52,13 +58,17 @@ sudo apt install grep build-essential gcc g++ automake git-core autoconf make pa
 	
 	> Enter current password for root (enter for none): `ENTER`
 	
-	> Switch to unix_socket authentication [Y/n] `Y`
+	> Switch to unix_socket authentication [Y/n] `N`
 	
-	:exclamation: The script will ask you about the authentication method only if you installed the latest version from MariaDB repositories
+	:exclamation: This request become available only if you installed the latest version from MariaDB repositories
+	
+	:exclamation: You already have your root account protected with unix_socket authentication, so you can safely answer 'n'
 	
 	> Set root password? [Y/n] `N`
 	
 	:exclamation: In Debian, the root account for MariaDB is tied closely to automated system maintenance, so we should not change the configured authentication methods for that account.
+	
+	:exclamation: You already have your root account protected with unix_socket authentication, so you can safely answer 'n'
 	
 	> Remove anonymous users? [Y/n] `Y`
 	
@@ -68,38 +78,82 @@ sudo apt install grep build-essential gcc g++ automake git-core autoconf make pa
 	
 	> Reload privilege tables now? [Y/n] `Y`
 	
-3. Optionally set up an additional administrative account `dbadmin` with password `db-new-password` for password access (e.g. for remote full access to the database)
+3. Optionally set up an additional administrative account `dbadmin` with password `db-new-password` for password access (e.g. for remote full access to the database through SSH-tunnel)
 	```bash
 	sudo mysql
 	```
+	the command prompt line changes to `MariaDB [(none)]>`
 	```mysql
-	MariaDB [(none)]> GRANT ALL ON *.* TO 'dbadmin'@'localhost' IDENTIFIED BY 'db-new-password' WITH GRANT OPTION;
+	GRANT ALL ON *.* TO 'dbadmin'@'localhost' IDENTIFIED BY 'db-new-password' WITH GRANT OPTION;
+	```
+	:exclamation: Don't forget to change the `db-new-password` variable to a really complicated password! :speak_no_evil:
+	```mysql
+	FLUSH PRIVILEGES;
 	```
 	```mysql
-	MariaDB [(none)]> FLUSH PRIVILEGES;
-	```
-	```mysql
-	MariaDB [(none)]> exit
+	EXIT
 	```
 
 ## 3. Get the remote data to your system
+1. Create a new user to run your mangos server under
+```bash
+sudo adduser mangos
+```
+2. Switch to mangos user in a shell
+```bash
+su mangos
+```
+3. Create a source dir
+```bash
+mkdir /home/mangos/source
+cd /home/mangos/source
+```
+4. Git mangos-classic
+```bash
+git clone git://github.com/cmangos/mangos-classic.git
+```
+5. Git classic-DB
+```bash
+git clone git://github.com/cmangos/classic-db.git
+```
+## 4. Compiling CMaNGOS
+1. Prepare the mangos-classic source code to be built
+	- Create a build dir
+	```bash
+	mkdir /home/mangos/source/build
+	cd /home/mangos/source/build
+	```
+	- Choose build options that may interest us:
+	```
+	-DCMAKE_INSTALL_PREFIX=\  Path where the server should be installed to
+	-DPCH=1                   Use precompiled headers (much faster after updates)
+	-DDEBUG=0                 Remove debug mode from compiling
+	-DBUILD_EXTRACTORS=ON     Build map/dbc/vmap/mmap extractor
+	-DBUILD_PLAYERBOT=ON      Build with playerbots mod enabled
+	```
+	- Example:
+	```
+	Example1: command to just compile mangos-classic and install in /home/mangos/wow-vanilla-run dir:
+	cmake ../mangos-classic -DCMAKE_INSTALL_PREFIX=\../../wow-vanilla-run -DPCH=1 -DDEBUG=0
+	
+	Example2: command to compile same as in Example1 + build map extraction tools:
+	cmake ../mangos-classic -DCMAKE_INSTALL_PREFIX=\../../wow-vanilla-run -DBUILD_EXTRACTORS=ON -DPCH=1 -DDEBUG=0
+	
+	Example3: command to compile same as in Example1 + build map extraction tools + playerbots mod
+	cmake ../mangos-classic -DCMAKE_INSTALL_PREFIX=\../../wow-vanilla-run -DBUILD_EXTRACTORS=ON -DPCH=1 -DDEBUG=0 -DBUILD_PLAYERBOT=ON
+	```
+2. Configure building utility use Example3 settings
+```bash
+cmake ../mangos-classic -DCMAKE_INSTALL_PREFIX=\../../wow-vanilla-run -DBUILD_EXTRACTORS=ON -DPCH=1 -DDEBUG=0 -DBUILD_PLAYERBOT=ON
+```
+:grey_exclamation: *(installing in the `/home/mangos/wow-vanilla-run` dir, with map extraction tools and enabled playerbots mod)*
 
-- Create a new user to run your mangos server under
-	```bash
-	sudo adduser mangos
-	```
-	```bash
-	su mangos
-	```
-	```bash
-	mkdir /home/mangos/source
-	cd /home/mangos/source
-	```
-- clone mangos-classic
-	```bash
-	git clone git://github.com/cmangos/mangos-classic.git
-	```
-- Clone classic-DB
-	```bash
-	git clone git://github.com/cmangos/classic-db.git
-	```
+3. Make building CMaNGOS binary files
+```bash
+make
+```
+4. Install CMaNGOS binary files
+```bash
+make install
+```
+## 5. Extract data files from the client
