@@ -1,11 +1,11 @@
 # cmangos-help
 Step by step installation instructions & ruRU support for cMaNGOS Server [gitpage](https://github.com/cmangos)
 
-:house: [Home](https://biosfree.github.io/cmangos-help/)
+:house: [Home](/)
 1. English
 	* [linux](/cmangos-help/linux/)
-		* [Debian 10](/cmangos-help/linux/en_debian_vanilla.md)
-		* [Ubuntu](/cmangos-help/linux/en_ubuntu_vanilla.md)
+		* [Debian 10](/linux/en_debian_vanilla.md)
+		* [Ubuntu](/linux/en_ubuntu_vanilla.md)
 	* Windows
 2. Russian
 	* linux
