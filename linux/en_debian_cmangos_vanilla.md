@@ -83,16 +83,10 @@ sudo mysql
 the command prompt line changes to `MariaDB [(none)]>`
 ```mysql
 GRANT ALL ON *.* TO 'dbadmin'@'localhost' IDENTIFIED BY 'db-new-password' WITH GRANT OPTION;
-```
-:exclamation: Don't forget to change the `db-new-password` variable to a really complicated password! :speak_no_evil:
-
-```mysql
 FLUSH PRIVILEGES;
-```
-
-```mysql
 EXIT
 ```
+:exclamation: Don't forget to change the `db-new-password` variable to a really complicated password! :speak_no_evil:
 
 ### 3. Get the remote data to your system
 1. Create a new user to run your mangos server under
