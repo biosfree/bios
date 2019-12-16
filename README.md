@@ -10,4 +10,4 @@ Step by step installation instructions & ruRU support for cMaNGOS Server [gitpag
 	* [Ubuntu](/linux/ru_ubuntu_vanilla.md)
 	* Windows
 
-3. [wiki](https://github.com/biosfree/cmangos-help/wiki)
+3. [Wiki](https://github.com/biosfree/cmangos-help/wiki)
