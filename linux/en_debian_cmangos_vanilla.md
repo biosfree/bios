@@ -53,7 +53,8 @@ sudo apt install mariadb-server
 ```bash
 sudo mysql_secure_installation
 ```
-:grey_exclamation: The script will prompt you to determine which actions to perform
+The script will prompt you to determine which actions to perform
+
 > Enter current password for root (enter for none): `ENTER`
 
 > Switch to unix_socket authentication [Y/n] `N`
