@@ -32,12 +32,11 @@ sudo apt install grep build-essential gcc g++ automake git-core autoconf make pa
 ```
 
 #### 2.2 Install and Configure MariaDB <a name="install_mariadb"></a>
-1. Installing MariaDB
-- version 10.3 from standart debian buster repo
+1. Installing MariaDB version 10.3 from standart debian buster repo
 ```bash
 sudo apt install mariadb-server
 ```
-- or version 10.4 stable from mariadb repo
+- or MariaDB version 10.4 stable from mariadb repo
 ```bash
 sudo apt-get install software-properties-common dirmngr
 sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8
@@ -54,29 +53,26 @@ sudo apt install mariadb-server
 ```bash
 sudo mysql_secure_installation
 ```
-The script will prompt you to determine which actions to perform
+* The script will prompt you to determine which actions to perform
+	> Enter current password for root (enter for none): `ENTER`
 	
-> Enter current password for root (enter for none): `ENTER`
-
-> Switch to unix_socket authentication [Y/n] `N`
+	> Switch to unix_socket authentication [Y/n] `N`
 	
-:exclamation: This request become available only if you installed the latest version from MariaDB repositories
+	:exclamation: This request become available only if you installed the latest version from MariaDB repositories
+	:exclamation: You already have your root account protected with unix_socket authentication, so you can safely answer 'n'
 	
-:exclamation: You already have your root account protected with unix_socket authentication, so you can safely answer 'n'
+	> Set root password? [Y/n] `N`
 	
-> Set root password? [Y/n] `N`
+	:exclamation: In Debian, the root account for MariaDB is tied closely to automated system maintenance, so we should not change the configured authentication methods for that account.
+	:exclamation: You already have your root account protected with unix_socket authentication, so you can safely answer 'n'
 	
-:exclamation: In Debian, the root account for MariaDB is tied closely to automated system maintenance, so we should not change the configured authentication methods for that account.
+	> Remove anonymous users? [Y/n] `Y`
 	
-:exclamation: You already have your root account protected with unix_socket authentication, so you can safely answer 'n'
+	> Disallow root login remotely? [Y/n] `Y`
 	
-> Remove anonymous users? [Y/n] `Y`
+	> Remove test database and access to it? [Y/n] `Y`
 	
-> Disallow root login remotely? [Y/n] `Y`
-	
-> Remove test database and access to it? [Y/n] `Y`
-	
-> Reload privilege tables now? [Y/n] `Y`
+	> Reload privilege tables now? [Y/n] `Y`
 	
 3. Optionally set up an additional administrative account `dbadmin` with password `db-new-password` for password access (e.g. for remote full access to the database through SSH-tunnel)
 ```bash
