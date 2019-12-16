@@ -1,4 +1,4 @@
-# Installation Instructions CMaNGOS
+## Debian 10 CMaNGOS Installation Instructions
 *How to install & run C(ontinued)-MaNGOS from source code*
 - [x] server core: cmangos/mangos-classic
 - [x] server data: cmangos/classic-db
@@ -10,12 +10,12 @@ The following variables are used in this document:
 
 If you are an absolute beginner to programming and compiling then you may want to go through the [Beginner's Guide](https://github.com/cmangos/issues/wiki/Beginners-Guide-Home) first.
 
-## 1. Links
+### 1. Links
 - CMaNGOS: [site](https://cmangos.net) | [forum](https://forum.cmangos.net) | [git repositories](https://github.com/cmangos) | [discord](https://discord.gg/Dgzerzb)
 - Classic-DB: [forum](https://github.com/cmangos/classic-db/issues) | [git repository](https://github.com/cmangos/classic-db)
 - Author of this guide: @biosfree
 
-## 2. Software requirements
+### 2. Software requirements
 - Debian 10 [Installed](https://github.com/biosfree/cmangos-help) and [Configured](https://github.com/biosfree/cmangos-help)
 - Client World of Warcraft Classic (vanilla version 1.12.x)
 - MariaDB (community-developed fork of the MySQL) database management system for server. This guide will also help you [install and configure MariaDB](#install_mariadb).
@@ -33,68 +33,70 @@ sudo apt install grep build-essential gcc g++ automake git-core autoconf make pa
 
 #### 2.2 Install and Configure MariaDB <a name="install_mariadb"></a>
 1. Installing MariaDB
-	- version 10.3 from standart debian buster repo
-	```bash
-	sudo apt install mariadb-server
-	```
-	- or version 10.4 stable from mariadb repo
-	```bash
-	sudo apt-get install software-properties-common dirmngr
-	sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8
-	sudo add-apt-repository 'deb [arch=amd64] http://mariadb.mirror.serveriai.lt/repo/10.4/debian buster main'
-	```
-	```bash
-	sudo apt update
-	sudo apt upgrade
-	sudo apt install mariadb-server
-	```
-	:grey_exclamation: Check all available versions and mirrors on the official MariaDB Foundation [page](https://downloads.mariadb.org/mariadb/repositories/#distro=Debian&distro_release=buster--buster)
+- version 10.3 from standart debian buster repo
+```bash
+sudo apt install mariadb-server
+```
+- or version 10.4 stable from mariadb repo
+```bash
+sudo apt-get install software-properties-common dirmngr
+sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8
+sudo add-apt-repository 'deb [arch=amd64] http://mariadb.mirror.serveriai.lt/repo/10.4/debian buster main'
+```
+```bash
+sudo apt update
+sudo apt upgrade
+sudo apt install mariadb-server
+```
+:grey_exclamation: Check all available versions and mirrors on the official MariaDB Foundation [page](https://downloads.mariadb.org/mariadb/repositories/#distro=Debian&distro_release=buster--buster)
 
 2. Run this script to increase the security of your MariaDB installation
-	```bash
-	sudo mysql_secure_installation
-	```
-	The script will prompt you to determine which actions to perform
+```bash
+sudo mysql_secure_installation
+```
+The script will prompt you to determine which actions to perform
 	
-	> Enter current password for root (enter for none): `ENTER`
+> Enter current password for root (enter for none): `ENTER`
+
+> Switch to unix_socket authentication [Y/n] `N`
 	
-	> Switch to unix_socket authentication [Y/n] `N`
+:exclamation: This request become available only if you installed the latest version from MariaDB repositories
 	
-	:exclamation: This request become available only if you installed the latest version from MariaDB repositories
+:exclamation: You already have your root account protected with unix_socket authentication, so you can safely answer 'n'
 	
-	:exclamation: You already have your root account protected with unix_socket authentication, so you can safely answer 'n'
+> Set root password? [Y/n] `N`
 	
-	> Set root password? [Y/n] `N`
+:exclamation: In Debian, the root account for MariaDB is tied closely to automated system maintenance, so we should not change the configured authentication methods for that account.
 	
-	:exclamation: In Debian, the root account for MariaDB is tied closely to automated system maintenance, so we should not change the configured authentication methods for that account.
+:exclamation: You already have your root account protected with unix_socket authentication, so you can safely answer 'n'
 	
-	:exclamation: You already have your root account protected with unix_socket authentication, so you can safely answer 'n'
+> Remove anonymous users? [Y/n] `Y`
 	
-	> Remove anonymous users? [Y/n] `Y`
+> Disallow root login remotely? [Y/n] `Y`
 	
-	> Disallow root login remotely? [Y/n] `Y`
+> Remove test database and access to it? [Y/n] `Y`
 	
-	> Remove test database and access to it? [Y/n] `Y`
-	
-	> Reload privilege tables now? [Y/n] `Y`
+> Reload privilege tables now? [Y/n] `Y`
 	
 3. Optionally set up an additional administrative account `dbadmin` with password `db-new-password` for password access (e.g. for remote full access to the database through SSH-tunnel)
-	```bash
-	sudo mysql
-	```
-	the command prompt line changes to `MariaDB [(none)]>`
-	```mysql
-	GRANT ALL ON *.* TO 'dbadmin'@'localhost' IDENTIFIED BY 'db-new-password' WITH GRANT OPTION;
-	```
-	:exclamation: Don't forget to change the `db-new-password` variable to a really complicated password! :speak_no_evil:
-	```mysql
-	FLUSH PRIVILEGES;
-	```
-	```mysql
-	EXIT
-	```
+```bash
+sudo mysql
+```
+the command prompt line changes to `MariaDB [(none)]>`
+```mysql
+GRANT ALL ON *.* TO 'dbadmin'@'localhost' IDENTIFIED BY 'db-new-password' WITH GRANT OPTION;
+```
+:exclamation: Don't forget to change the `db-new-password` variable to a really complicated password! :speak_no_evil:
 
-## 3. Get the remote data to your system
+```mysql
+FLUSH PRIVILEGES;
+```
+
+```mysql
+EXIT
+```
+
+### 3. Get the remote data to your system
 1. Create a new user to run your mangos server under
 ```bash
 sudo adduser mangos
@@ -116,7 +118,7 @@ git clone git://github.com/cmangos/mangos-classic.git
 ```bash
 git clone git://github.com/cmangos/classic-db.git
 ```
-## 4. Compiling CMaNGOS
+### 4. Compiling CMaNGOS
 1. Prepare the mangos-classic source code to be built
 	- Create a build dir
 	```bash
@@ -156,4 +158,4 @@ make
 ```bash
 make install
 ```
-## 5. Extract data files from the client
+### 5. Extract data files from the client
