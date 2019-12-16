@@ -59,11 +59,13 @@ sudo mysql_secure_installation
 	> Switch to unix_socket authentication [Y/n] `N`
 	
 	:exclamation: This request become available only if you installed the latest version from MariaDB repositories
+	
 	:exclamation: You already have your root account protected with unix_socket authentication, so you can safely answer 'n'
 	
 	> Set root password? [Y/n] `N`
 	
 	:exclamation: In Debian, the root account for MariaDB is tied closely to automated system maintenance, so we should not change the configured authentication methods for that account.
+	
 	:exclamation: You already have your root account protected with unix_socket authentication, so you can safely answer 'n'
 	
 	> Remove anonymous users? [Y/n] `Y`
