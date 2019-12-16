@@ -36,18 +36,18 @@ sudo apt install grep build-essential gcc g++ automake git-core autoconf make pa
 ```bash
 sudo apt install mariadb-server
 ```
-- or MariaDB version 10.4 stable from mariadb repo
-```bash
-sudo apt-get install software-properties-common dirmngr
-sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8
-sudo add-apt-repository 'deb [arch=amd64] http://mariadb.mirror.serveriai.lt/repo/10.4/debian buster main'
-```
-```bash
-sudo apt update
-sudo apt upgrade
-sudo apt install mariadb-server
-```
-:grey_exclamation: Check all available versions and mirrors on the official MariaDB Foundation [page](https://downloads.mariadb.org/mariadb/repositories/#distro=Debian&distro_release=buster--buster)
+   - or MariaDB version 10.4 stable from mariadb repo
+   ```bash
+   sudo apt-get install software-properties-common dirmngr
+   sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8
+   sudo add-apt-repository 'deb [arch=amd64] http://mariadb.mirror.serveriai.lt/repo/10.4/debian buster main'
+   ```
+   ```bash
+   sudo apt update
+   sudo apt upgrade
+   sudo apt install mariadb-server
+   ```
+   :grey_exclamation: Check all available versions and mirrors on the official MariaDB Foundation [page](https://downloads.mariadb.org/mariadb/repositories/#distro=Debian&distro_release=buster--buster)
 
 2. Run this script to increase the security of your MariaDB installation
 ```bash
