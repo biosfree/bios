@@ -3,7 +3,7 @@ Step by step installation instructions & ruRU support for cMaNGOS Server [gitpag
 
 :house: [Home](/)
 1. English
-	* [linux](/cmangos-help/linux/)
+	* linux
 		* [Debian 10](/linux/en_debian_vanilla.md)
 		* [Ubuntu](/linux/en_ubuntu_vanilla.md)
 	* Windows
