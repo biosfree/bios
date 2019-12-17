@@ -112,13 +112,13 @@ git clone git://github.com/cmangos/classic-db.git
 ```
 
 ### 4. Compiling CMaNGOS
-1. Prepare the mangos-classic source code to be built
-   * Create a build dir
-   ```bash
-   mkdir /home/mangos/source/build
-   cd /home/mangos/source/build
-   ```
-   * Choose build options that may interest us:
+1. Create a build dir
+```bash
+mkdir /home/mangos/source/build
+cd /home/mangos/source/build
+```
+2. Choose build options
+   * options that may interest us:
    ```
    -DCMAKE_INSTALL_PREFIX=\  Path where the server should be installed to
    -DPCH=1                   Use precompiled headers (much faster after updates)
@@ -139,17 +139,17 @@ git clone git://github.com/cmangos/classic-db.git
    Example3: command to compile same as in Example1 + build map extraction tools + playerbots mod
    cmake ../mangos-classic -DCMAKE_INSTALL_PREFIX=\../../wow-vanilla-run -DBUILD_EXTRACTORS=ON -DPCH=1 -DDEBUG=0 -DBUILD_PLAYERBOT=ON
    ```
-2. Configure building utility use Example3 settings
+3. Configure building utility use Example3 settings
 ```bash
 cmake ../mangos-classic -DCMAKE_INSTALL_PREFIX=\../../wow-vanilla-run -DBUILD_EXTRACTORS=ON -DPCH=1 -DDEBUG=0 -DBUILD_PLAYERBOT=ON
 ```
 :grey_exclamation: *(installing in the `/home/mangos/wow-vanilla-run` dir, with map extraction tools and enabled playerbots mod)*
 
-3. Make building CMaNGOS binary files
+4. Make building CMaNGOS binary files
 ```bash
 make
 ```
-4. Install CMaNGOS binary files
+5. Install CMaNGOS binary files
 ```bash
 make install
 ```
