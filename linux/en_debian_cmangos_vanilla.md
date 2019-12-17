@@ -112,30 +112,32 @@ git clone git://github.com/cmangos/classic-db.git
 ```
 ### 4. Compiling CMaNGOS
 1. Prepare the mangos-classic source code to be built
-	- Create a build dir
-	```bash
-	mkdir /home/mangos/source/build
-	cd /home/mangos/source/build
-	```
-	- Choose build options that may interest us:
-	```
-	-DCMAKE_INSTALL_PREFIX=\  Path where the server should be installed to
-	-DPCH=1                   Use precompiled headers (much faster after updates)
-	-DDEBUG=0                 Remove debug mode from compiling
-	-DBUILD_EXTRACTORS=ON     Build map/dbc/vmap/mmap extractor
-	-DBUILD_PLAYERBOT=ON      Build with playerbots mod enabled
-	```
-	- Example:
-	```
-	Example1: command to just compile mangos-classic and install in /home/mangos/wow-vanilla-run dir:
-	cmake ../mangos-classic -DCMAKE_INSTALL_PREFIX=\../../wow-vanilla-run -DPCH=1 -DDEBUG=0
-	
-	Example2: command to compile same as in Example1 + build map extraction tools:
-	cmake ../mangos-classic -DCMAKE_INSTALL_PREFIX=\../../wow-vanilla-run -DBUILD_EXTRACTORS=ON -DPCH=1 -DDEBUG=0
-	
-	Example3: command to compile same as in Example1 + build map extraction tools + playerbots mod
-	cmake ../mangos-classic -DCMAKE_INSTALL_PREFIX=\../../wow-vanilla-run -DBUILD_EXTRACTORS=ON -DPCH=1 -DDEBUG=0 -DBUILD_PLAYERBOT=ON
-	```
+   * Create a build dir
+   ```bash
+   mkdir /home/mangos/source/build
+   cd /home/mangos/source/build
+   ```
+   * Choose build options that may interest us:
+   ```
+   -DCMAKE_INSTALL_PREFIX=\  Path where the server should be installed to
+   -DPCH=1                   Use precompiled headers (much faster after updates)
+   -DDEBUG=0                 Remove debug mode from compiling
+   -DBUILD_EXTRACTORS=ON     Build map/dbc/vmap/mmap extractor
+   -DBUILD_PLAYERBOT=ON      Build with playerbots mod enabled
+   ```
+   * Example:
+   ```
+   Example1: command to just compile mangos-classic and install in /home/mangos/wow-vanilla-run dir:
+   cmake ../mangos-classic -DCMAKE_INSTALL_PREFIX=\../../wow-vanilla-run -DPCH=1 -DDEBUG=0
+   ```
+   ```
+   Example2: command to compile same as in Example1 + build map extraction tools:
+   cmake ../mangos-classic -DCMAKE_INSTALL_PREFIX=\../../wow-vanilla-run -DBUILD_EXTRACTORS=ON -DPCH=1 -DDEBUG=0
+   ```
+   ```
+   Example3: command to compile same as in Example1 + build map extraction tools + playerbots mod
+   cmake ../mangos-classic -DCMAKE_INSTALL_PREFIX=\../../wow-vanilla-run -DBUILD_EXTRACTORS=ON -DPCH=1 -DDEBUG=0 -DBUILD_PLAYERBOT=ON
+   ```
 2. Configure building utility use Example3 settings
 ```bash
 cmake ../mangos-classic -DCMAKE_INSTALL_PREFIX=\../../wow-vanilla-run -DBUILD_EXTRACTORS=ON -DPCH=1 -DDEBUG=0 -DBUILD_PLAYERBOT=ON
