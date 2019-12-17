@@ -36,7 +36,7 @@ sudo apt install grep build-essential gcc g++ automake git-core autoconf make pa
 ```bash
 sudo apt install mariadb-server
 ```
-   - or MariaDB version 10.4 stable from mariadb repo
+   * or MariaDB version 10.4 stable from mariadb repo
    ```bash
    sudo apt-get install software-properties-common dirmngr
    sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8
@@ -53,41 +53,40 @@ sudo apt install mariadb-server
 ```bash
 sudo mysql_secure_installation
 ```
-The script will prompt you to determine which actions to perform
-
-> Enter current password for root (enter for none): `ENTER`
-
-> Switch to unix_socket authentication [Y/n] `N`
-
-:exclamation: This request become available only if you installed the latest version from MariaDB repositories
-
-:exclamation: You already have your root account protected with unix_socket authentication, so you can safely answer 'n'
-
-> Set root password? [Y/n] `N`
-
-:exclamation: In Debian, the root account for MariaDB is tied closely to automated system maintenance, so we should not change the configured authentication methods for that account.
-
-:exclamation: You already have your root account protected with unix_socket authentication, so you can safely answer 'n'
-
-> Remove anonymous users? [Y/n] `Y`
-
-> Disallow root login remotely? [Y/n] `Y`
-
-> Remove test database and access to it? [Y/n] `Y`
-
-> Reload privilege tables now? [Y/n] `Y`
+   * The script will prompt you to determine which actions to perform
+   > Enter current password for root (enter for none): `ENTER`
+   
+   > Switch to unix_socket authentication [Y/n] `N`
+   
+   :exclamation: This request become available only if you installed the latest version from MariaDB repositories
+   
+   :exclamation: You already have your root account protected with unix_socket authentication, so you can safely answer 'n'
+   
+   > Set root password? [Y/n] `N`
+   
+   :exclamation: In Debian, the root account for MariaDB is tied closely to automated system maintenance, so we should not change the configured authentication methods for that account.
+   
+   :exclamation: You already have your root account protected with unix_socket authentication, so you can safely answer 'n'
+   
+   > Remove anonymous users? [Y/n] `Y`
+   
+   > Disallow root login remotely? [Y/n] `Y`
+   
+   > Remove test database and access to it? [Y/n] `Y`
+   
+   > Reload privilege tables now? [Y/n] `Y`
 
 3. Optionally set up an additional administrative account `dbadmin` with password `db-new-password` for password access (e.g. for remote full access to the database through SSH-tunnel)
 ```bash
 sudo mysql
 ```
-the command prompt line changes to `MariaDB [(none)]>`
-```mysql
-GRANT ALL ON *.* TO 'dbadmin'@'localhost' IDENTIFIED BY 'db-new-password' WITH GRANT OPTION;
-FLUSH PRIVILEGES;
-EXIT
-```
-:exclamation: Don't forget to change the `db-new-password` variable to a really complicated password! :speak_no_evil:
+   * the command prompt line changes to `MariaDB [(none)]>`
+   ```mysql
+   GRANT ALL ON *.* TO 'dbadmin'@'localhost' IDENTIFIED BY 'db-new-password' WITH GRANT OPTION;
+   FLUSH PRIVILEGES;
+   EXIT
+   ```
+   :exclamation: Don't forget to change the `db-new-password` variable to a really complicated password! :speak_no_evil:
 
 ### 3. Get the remote data to your system
 1. Create a new user to run your mangos server under
