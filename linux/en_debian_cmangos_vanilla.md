@@ -54,6 +54,7 @@ sudo apt install mariadb-server
 sudo mysql_secure_installation
 ```
    * The script will prompt you to determine which actions to perform
+   
      > Enter current password for root (enter for none): `ENTER`
      
      > Switch to unix_socket authentication [Y/n] `N`
@@ -89,6 +90,7 @@ sudo mysql
    :exclamation: Don't forget to change the `db-new-password` variable to a really complicated password! :speak_no_evil:
 
 ### 3. Get the remote data to your system
+
 1. Create a new user to run your mangos server under
 ```bash
 sudo adduser mangos
@@ -112,6 +114,7 @@ git clone git://github.com/cmangos/classic-db.git
 ```
 
 ### 4. Compiling CMaNGOS
+
 1. Create a build dir
 ```bash
 mkdir /home/mangos/source/build
@@ -126,7 +129,7 @@ cd /home/mangos/source/build
    -DBUILD_EXTRACTORS=ON     Build map/dbc/vmap/mmap extractor
    -DBUILD_PLAYERBOT=ON      Build with playerbots mod enabled
    ```
-   * Example:
+   * example:
    ```
    Example1: command to just compile mangos-classic and install in /home/mangos/wow-vanilla-run dir:
    cmake ../mangos-classic -DCMAKE_INSTALL_PREFIX=\../../wow-vanilla-run -DPCH=1 -DDEBUG=0
@@ -153,4 +156,5 @@ make
 ```bash
 make install
 ```
+
 ### 5. Extract data files from the client
