@@ -110,6 +110,7 @@ git clone git://github.com/cmangos/mangos-classic.git
 ```bash
 git clone git://github.com/cmangos/classic-db.git
 ```
+
 ### 4. Compiling CMaNGOS
 1. Prepare the mangos-classic source code to be built
    * Create a build dir
