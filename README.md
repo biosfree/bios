@@ -1,4 +1,4 @@
-# cmangos-help
+# [cmangos-help](https://biosfree.github.io/cmangos-help)
 Step by step installation instructions & ruRU support for cMaNGOS Server [gitpage](https://github.com/cmangos)
 
 ## Environment Installation Instructions
