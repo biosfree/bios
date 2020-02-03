@@ -24,11 +24,11 @@ If you are an absolute beginner to programming and compiling then you may want t
 #### 2.1 Install help tools and some libraries
 ```bash
 sudo apt update
-sudo apt install build-essential git autoconf cmake default-libmysqlclient-dev libtool libssl-dev zlibc libbz2-dev subversion libboost-all-dev
+sudo apt install build-essential automake git cmake default-libmysqlclient-dev libtool libssl-dev zlibc libbz2-dev subversion libboost-all-dev
 ```
 or full list without dependencies:
 ```bash
-sudo apt install grep build-essential gcc g++ automake git-core autoconf make patch cmake default-libmysqlclient-dev libtool libssl-dev binutils zlibc libc6 libbz2-dev subversion libboost-all-dev
+sudo apt install grep build-essential gcc g++ automake git autoconf make patch cmake default-libmysqlclient-dev libtool libssl-dev binutils zlibc libc6 libbz2-dev subversion libboost-all-dev
 ```
 
 #### 2.2 Install and Configure MariaDB <a name="install_mariadb"></a>
